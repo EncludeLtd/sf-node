@@ -49,6 +49,8 @@ async function makeQuery(auth) {
 
    // Write raw SOQL queries https://developer.salesforce.com/docs/atlas.en-us.soql_sosl.meta/soql_sosl/sforce_api_calls_soql.htm
    const q = "SELECT Id, Name, Order_Day__c, Order_Time__c FROM Service_Engagement__c WHERE Status__c = 'Offered'";
+   // Another query example with related list:
+   // const q = "SELECT Id, Name, (SELECT Id, Name, Status__c FROM Service_Engagements1__r WHERE Status__c = 'Wait-listed') FROM Slot__c WHERE Organisation__c = '0013O00000JQETXQA5'";
    try {
       const results = await conn.query(q);
       console.log('*** Your Query Results ***');
